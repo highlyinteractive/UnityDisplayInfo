@@ -9,13 +9,13 @@ Managed plugin for Unity to get detailed information about attached displays
 | Display Count               |     ✘    |    ✘   |    ✓    |    ✓   |          |    ✓   |         |    ✓   |
 | Rendering Resolution        |    ✓*    |   ✓*   |    ✓    |    ✓   |          |    ✓   |         |    ✓   |
 | Screen Resolution           |    ✓*    |   ✓*   |    ✓    |    ✓   |          |    ✓   |         |    ✓   |
-| Native Display Resolution   |          |    ✘   |         |    ✘   |          |    ✓   |         |    ✓   |
+| Native Display Resolution   |     ✘    |    ✘   |    ✘    |    ✘   |          |    ✓   |         |    ✓   |
 | Virtual Display Resolution† |    N/A   |    ✘   |   N/A   |    ✘   |    N/A   |    ✓   |   N/A   |    ✓   |
 | Physical Screen Size        |     ✘    |    ✘   |    ✘    |    ✘   |          |    ✓   |         |    ✓   |
 | Display Bounds              |     ✘    |    ✘   |    ✘    |    ✘   |          |    ✓   |         |    ✓   |
 | DPI                         |    ✓*    |   ✓*   |   ✓*    |   ✓*   |          |    ✓   |         |    ✓   |
-| Refresh Rate                |          |        |         |        |          |        |         |        |
-| HiDpi Scale Factor          |          |        |         |        |          |    ✓   |         |    ✓   |
+| Refresh Rate                |    ✓*    |   ✓*   |   ✓*    |   ✓*   |          |        |         |        |
+| HiDpi Scale Factor          |     ✘    |    ✘   |    ✘    |    ✘   |          |    ✓   |         |    ✓   |
 |                             |          |        |         |        |          |        |         |        |
 
 \* <sub>For main display only</sub>
