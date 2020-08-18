@@ -27,4 +27,6 @@ If you use macOS, you might have noticed that the physical screen resolution is 
 
 ![mac_res](https://user-images.githubusercontent.com/793643/90556968-abf9be00-e191-11ea-85c6-89e7b3d03169.png)
 
-Most of the time, everything will look fine and you won't have to worry about this. However, there are certain situations where the scaling/interpolation will make things look soft. For example, if you desperately wanted to fill the screen with black and white 1px lines. In this situation, you might want to change (or ask your user to change) the screen resolution to 1440 x 900 and change Unity's rendering resolution to match. Everything will then get doubled to 2880 x 1800 and will look nice and crisp.
+When you set your display resolution in System Preferences, it takes that and multiplies it by a scaling factor (in this case 2) which gives the Screen Resolution (aka the Backing Store). However, this is often bigger than the native display, so macOS then scales it down slightly to fit the Native Resolution
+
+Most of the time, everything will look fine and you won't have to worry about any of this. However, there are certain situations where the scaling/interpolation might make things look soft. For example, if you desperately wanted to fill the screen with black and white 1px lines. In this situation, you might want to change (or ask your user to change) the screen resolution to 1440 x 900 and change Unity's rendering resolution to match. Everything will then get doubled to 2880 x 1800 and will look nice and crisp.
