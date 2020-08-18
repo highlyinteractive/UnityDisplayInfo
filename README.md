@@ -7,12 +7,13 @@ Managed plugin to get information about attached displays
 |                             | *Editor* |        | *Build* |        | *Editor* |        | *Build* |        |
 |                             |   *Win*  |  *Mac* |  *Win*  |  *Mac* |   *Win*  |  *Mac* |  *Win*  |  *Mac* |
 | Display Count               |     ✘    |    ✘   |    ✓    |    ✓   |          |    ✓   |         |    ✓   |
-| Rendering Width & Height    |     ✓    |    ✓   |    ✓    |    ✓   |     ✓    |    ✓   |    ✓    |    ✓   |
-| Native Display Resolution   |    ✓*    |    ✘   |    ✓    |    ✘   |          |    ✓   |         |    ✓   |
-| Virtual Display Resolution† |    N/A   |    ✓   |   N/A   |    ✓   |    N/A   |    ✓   |   N/A   |    ✓   |
+| Rendering Resolution        |    ✓*    |   ✓*   |    ✓    |    ✓   |          |    ✓   |         |    ✓   |
+| Screen Resolution           |    ✓*    |   ✓*   |    ✓    |    ✓   |          |    ✓   |         |    ✓   |
+| Native Display Resolution   |          |    ✘   |         |    ✘   |          |    ✓   |         |    ✓   |
+| Virtual Display Resolution† |    N/A   |    ✘   |   N/A   |    ✘   |    N/A   |    ✓   |   N/A   |    ✓   |
 | Physical Screen Size        |     ✘    |    ✘   |    ✘    |    ✘   |          |    ✓   |         |    ✓   |
 | Display Bounds              |     ✘    |    ✘   |    ✘    |    ✘   |          |    ✓   |         |    ✓   |
-| DPI                         |          |        |         |        |          |        |         |        |
+| DPI                         |    ✓*    |   ✓*   |   ✓*    |   ✓*   |          |    ✓   |         |    ✓   |
 | Refresh Rate                |          |        |         |        |          |        |         |        |
 | HiDpi Scale Factor          |          |        |         |        |          |        |         |        |
 |                             |          |        |         |        |          |        |         |        |
