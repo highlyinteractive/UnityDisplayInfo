@@ -1,4 +1,12 @@
-﻿using System.Collections.Generic;
+﻿/*
+ * DisplayInformation
+ * Uses managed to get detailed information about attached displays
+ * 
+ * Created by Mike Cobb on 18/08/2020.
+ * Copyright © 2020 Highly Interactive. All rights reserved.
+ */
+
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
@@ -62,6 +70,9 @@ namespace highlyinteractive.diagnostics
 		//The DPI based on the physical screen size
 		public static float Dpi (int id) => GetDisplayDPI(id);
 
+		//The refresh rate in hz
+		public static int RefreshRate (int id) => GetRefreshRate(id);
+
 		//The scaling factor
 		public static float ScaleFactor (int id) => GetScalingFactor(id);
 
@@ -75,11 +86,8 @@ namespace highlyinteractive.diagnostics
 		{
 			if (id < Display.displays.Length)
 			{
-				return Display.displays[id].renderingWidth;
+				if (Display.displays[id].active) return Display.displays[id].renderingWidth;
 			}
-			if (id == 0) return Screen.currentResolution.width;
-
-			//TODO: Search all cameras in scene & check which display
 
 			return -1;
 		}
@@ -88,9 +96,8 @@ namespace highlyinteractive.diagnostics
 		{
 			if (id < Display.displays.Length)
 			{
-				return Display.displays[id].renderingHeight;
+				if (Display.displays[id].active) return Display.displays[id].renderingHeight;
 			}
-			if (id == 0) return Screen.currentResolution.height;
 
 			return -1;
 		}
@@ -119,6 +126,13 @@ namespace highlyinteractive.diagnostics
 
 				return diag / GetDisplayDiagonal(id);
 			}
+
+			return -1;
+		}
+
+		private static int GetRefreshRate (int id)
+		{
+			//TODO: Find a good way to get refresh rate in macOS
 
 			return -1;
 		}
