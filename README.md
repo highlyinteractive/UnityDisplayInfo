@@ -1,5 +1,5 @@
 # Unity Display Info
-Managed plugin for Unity to get detailed information about attached displays
+Native plugin for Unity to get detailed information about attached displays
 
 ## Feature Comparison
 |                             |  Native  |        |         |        |  Plugin  |        |         |        |
