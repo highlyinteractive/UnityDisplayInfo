@@ -1,8 +1,8 @@
 //
-//  Display.cpp
+//  macDisplayInfo.cpp
 //  DisplayInfo
 //
-//	Plugin for Unity to get information about connected displays
+//	Plugin for Unity to get information about connected displays on macOS
 //
 //  Created by Mike Cobb on 14/08/2020.
 //  Copyright © 2020 Highly Interactive. All rights reserved.
