@@ -42,14 +42,24 @@ public class DisplayInfoExample : MonoBehaviour
 			else txt += $"{DisplayInformation.RenderingWidth(i)} x {DisplayInformation.RenderingHeight(i)}\n";
 			txt += $"{DisplayInformation.ScreenWidth(i)} x {DisplayInformation.ScreenHeight(i)}\n";
 			txt += $"{DisplayInformation.PixelWidth(i)} x {DisplayInformation.PixelHeight(i)}\n";
+#if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+			txt += "N/A\n";
+			txt += "Unavailable\n";
+#else
 			txt += $"{DisplayInformation.VirtualWidth(i)} x {DisplayInformation.VirtualHeight(i)}\n";
 			txt += $"{DisplayInformation.PhysicalWidth(i)} x {DisplayInformation.PhysicalHeight(i)}mm ";
 			txt += $"({DisplayInformation.PhysicalDiagonal(i).ToString("F0")}\")\n";
+#endif
 			Rect r = DisplayInformation.Bounds(i);
 			txt += $"x:{r.x}, y:{r.y}, w:{r.width}, h:{r.height}\n";
 			txt += $"{DisplayInformation.Dpi(i)}\n";
 			txt += $"{DisplayInformation.RefreshRate(i)}\n";
+#if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+			txt += $"{DisplayInformation.ScaleFactor(i)}%\n";
+#else
 			txt += $"{DisplayInformation.ScaleFactor(i)}\n";
+#endif
+
 
 			CreateTextColumn("Plugin Values", txt);
 		}
@@ -120,8 +130,12 @@ public class DisplayInfoExample : MonoBehaviour
 			"Display Bounds: \n" +
 			"DPI: \n" +
 			"Refresh Rate: \n" +
-			"HiDPI Scale Factor: " +
-			"</b>";
+#if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+			"Windows UI Scale Factor: \n" +
+#else
+			"HiDPI Scale Factor: \n" +
+#endif
+		"</b>";
 
 		CreateTextColumn("Text Headings", txt, false);
 	}

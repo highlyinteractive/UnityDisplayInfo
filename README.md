@@ -6,21 +6,23 @@ Native plugin for Unity to get detailed information about attached displays
 |-----------------------------|:--------:|:------:|:-------:|:------:|:--------:|:------:|:-------:|:------:|
 |                             | *Editor* |        | *Build* |        | *Editor* |        | *Build* |        |
 |                             |   *Win*  |  *Mac* |  *Win*  |  *Mac* |   *Win*  |  *Mac* |  *Win*  |  *Mac* |
-| Display Count               |     ✘    |    ✘   |    ✓    |    ✓   |          |    ✓   |         |    ✓   |
-| Rendering Resolution        |    ✓*    |   ✓*   |    ✓    |    ✓   |          |    ✓   |         |    ✓   |
-| Screen Resolution           |    ✓*    |   ✓*   |    ✓    |    ✓   |          |    ✓   |         |    ✓   |
-| Native Display Resolution   |     ✘    |    ✘   |    ✘    |    ✘   |          |    ✓   |         |    ✓   |
+| Display Count               |     ✘    |    ✘   |    ✓    |    ✓   |    ✓     |    ✓   |    ✓    |    ✓   |
+| Rendering Resolution        |    ✓*    |   ✓*   |    ✓    |    ✓   |    -     |    -   |    -    |    -   |
+| Reported Screen Resolution  |    ✓*    |   ✓*   |    ✓    |    ✓   |    ✓     |    ✓   |    ✓    |    ✓   |
+| Native Display Resolution   |     ✘    |    ✘   |    ✘    |    ✘   |    ✓     |    ✓   |    ✓    |    ✓   |
 | Virtual Display Resolution† |    N/A   |    ✘   |   N/A   |    ✘   |    N/A   |    ✓   |   N/A   |    ✓   |
-| Physical Screen Size        |     ✘    |    ✘   |    ✘    |    ✘   |          |    ✓   |         |    ✓   |
-| Display Bounds              |     ✘    |    ✘   |    ✘    |    ✘   |          |    ✓   |         |    ✓   |
-| DPI                         |    ✓*    |   ✓*   |   ✓*    |   ✓*   |          |    ✓   |         |    ✓   |
-| Refresh Rate                |    ✓*    |   ✓*   |   ✓*    |   ✓*   |          |        |         |        |
-| HiDpi Scale Factor          |     ✘    |    ✘   |    ✘    |    ✘   |          |    ✓   |         |    ✓   |
+| Physical Screen Size        |     ✘    |    ✘   |    ✘    |    ✘   |    ✘     |    ✓   |    ✘    |    ✓   |
+| Display Bounds              |     ✘    |    ✘   |    ✘    |    ✘   |    ✓     |    ✓   |    ✓    |    ✓   |
+| DPI                         |    ✓*    |   ✓*   |   ✓*    |   ✓*   |    ✓     |    ✓   |    ✓    |    ✓   |
+| Refresh Rate                |    ✓*    |   ✓*   |   ✓*    |   ✓*   |    ✓     |    ✘   |    ✓    |    ✘   |
+| HiDpi Scale Factor          |     ✘    |    ✘   |    ✘    |    ✘   |    ✓‡    |    ✓   |    ✓‡   |    ✓   |
 |                             |          |        |         |        |          |        |         |        |
 
 \* <sub>For main display only</sub>
 
 † <sub>Some macOS displays report a higher "Backing Store" resolution which is then scaled down to the screen resolution. This is what Unity natively reports.</sub>
+
+‡ <sub>Scale Factor on Windows is the percentage by which the UI is scaled</sub>
 
 ### Virtual Display Resolution on macOS
 If you use macOS, you might have noticed that the physical screen resolution is different from the value that Unity gives you. This is because macOS renders to a high resolution buffer called the Backing Store, which it then scales down to the native screen resolution. Here's an example using a MacBook Pro:
