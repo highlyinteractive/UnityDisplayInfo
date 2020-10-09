@@ -1,14 +1,16 @@
 //
-//  macDisplayInfo.cpp
+//  Display.cpp
 //  DisplayInfo
 //
-//	Plugin for Unity to get information about connected displays on macOS
+//	Plugin for Unity to get information about connected displays
 //
 //  Created by Mike Cobb on 14/08/2020.
 //  Copyright © 2020 Highly Interactive. All rights reserved.
 //
 
+#include <string>
 #include <CoreGraphics/CGDisplayConfiguration.h>
+using namespace std;
 
 extern "C"
 {
@@ -29,7 +31,8 @@ int GetDisplayCount ()
 	return nDisplays;
 }
 
-void GetNativeScreenResolution (int screenId, int& w, int& h)
+//This doesn't seem to work for all screens, but I'm keeping it as a backup
+void GetNativeScreenResolutionSometimes (int screenId, int& w, int& h)
 {
 	auto modes = CGDisplayCopyAllDisplayModes(displayIds[screenId], nullptr);
     auto count = CFArrayGetCount(modes);
@@ -62,6 +65,74 @@ void GetNativeScreenResolution (int screenId, int& w, int& h)
 	CFRelease(modes);
 }
 
+//Unfortunately this is the best solution I can find for macOS
+void GetNativeScreenResolution (int screenId, int& w, int& h, int& d)
+{
+	char buffer[128];
+	size_t lines = 0;
+	string result = "";
+	
+	FILE* pipe = popen("system_profiler SPDisplaysDataType | grep Resolution | awk '{print $2 \"x\" $4 \";\"}'", "r");
+	
+	if (!pipe)
+	{
+		//Use backup method & record debug flag
+		GetNativeScreenResolutionSometimes(screenId, w, h);
+		d = 2;
+		return;
+	}
+	
+	try
+	{
+		while (fgets(buffer, sizeof buffer, pipe) != NULL)
+		{
+			if (screenId == lines)
+			{
+				//Loop through buffer and extract width & height
+				for (int i = 0; i < sizeof buffer; i++)
+				{
+					if (buffer[i] == 'x')
+					{
+						//Set width
+						w = stoi(result);
+						result = "";
+						continue;
+					}
+					
+					if (buffer[i] == ';')
+					{
+						//Set height
+						h = stoi(result);
+						result = "";
+						break;
+					}
+					
+					result += buffer[i];
+				}
+			}
+			lines++;
+		}
+	}
+	catch (...)
+	{
+		pclose(pipe);
+		
+		//Use backup method & record debug flag
+		GetNativeScreenResolutionSometimes(screenId, w, h);
+		d = 3;
+		return;
+	}
+	
+	//Final error check: Make sure system_profiler reports correct display count
+	if (lines != GetDisplayCount())
+	{
+		d = 1;
+		return;
+	}
+	
+	d = 0;
+}
+
 void GetDisplayInformation (int* info, int screenId = 0)
 {
 	//If display does not exist, return
@@ -77,10 +148,11 @@ void GetDisplayInformation (int* info, int screenId = 0)
 	info[3] = (int)CGDisplayModeGetPixelHeight(mode);
 	
 	//Get native screen resolution
-	int w, h;
-	GetNativeScreenResolution(screenId, w, h);
+	int w, h, d;
+	GetNativeScreenResolution(screenId, w, h, d);
 	info[4] = w;
 	info[5] = h;
+	info[13] = d; //debug which method was used
 	
 	//Get physical display dimensions
 	CGSize screenSize = CGDisplayScreenSize(displayIds[screenId]);
@@ -94,11 +166,9 @@ void GetDisplayInformation (int* info, int screenId = 0)
 	info[10] = displayBounds.size.width;
 	info[11] = displayBounds.size.height;
 	
-	//TODO: Work out how to get other display info
-	//Refresh rate
-	//DPI
-	//Display Serial/Model/Etc...
-	//EDID String
+//	//TODO: Get refresh rate (this function just returns 0)
+//	int r = CGDisplayModeGetRefreshRate(mode);
+//	info[12] = r;
 }
 
 }
